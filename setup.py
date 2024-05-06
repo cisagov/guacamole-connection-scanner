@@ -96,7 +96,7 @@ setup(
         "docopt == 0.6.2",
         "ec2-metadata == 2.13.0",
         "psycopg == 3.1.18",
-        "schema == 0.7.5",
+        "schema == 0.7.7",
         "setuptools >= 24.2.0",
     ],
     extras_require={
