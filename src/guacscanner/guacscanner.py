@@ -41,7 +41,6 @@ Options:
   --windows-sftp-base-file=FILENAME  The file from which the base path for Windows SFTP connections will be read. [default: /run/secrets/windows-sftp-base]
 """
 
-
 # Standard Python Libraries
 import datetime
 import hashlib

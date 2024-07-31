@@ -1,6 +1,5 @@
 """A dataclass container for Guacamole connection parameters."""
 
-
 # Standard Python Libraries
 from dataclasses import dataclass
 
