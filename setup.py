@@ -75,14 +75,14 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     # What does your project relate to?
     keywords="aws, guacamole, vpc",
     packages=find_packages(where="src"),
@@ -100,6 +100,16 @@ setup(
         "setuptools >= 24.2.0",
     ],
     extras_require={
+        # IMPORTANT: Keep type hinting-related dependencies of the dev section
+        # in sync with the mypy pre-commit hook configuration (see
+        # .pre-commit-config.yaml). Any changes to type hinting-related
+        # dependencies here should be reflected in the additional_dependencies
+        # field of the mypy pre-commit hook to avoid discrepancies in type
+        # checking between environments.
+        "dev": [
+            "types-docopt",
+            "types-setuptools",
+        ],
         "test": [
             "coverage",
             # coveralls 1.11.0 added a service number for calls from
@@ -115,7 +125,7 @@ setup(
             "pre-commit",
             "pytest-cov",
             "pytest",
-        ]
+        ],
     },
     # Conveniently allows one to run the CLI tool as
     # `guacscanner`
