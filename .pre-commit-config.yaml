@@ -161,6 +161,7 @@ repos:
         # the dev section of setup.py to avoid discrepancies in type
         # checking between environments.
         additional_dependencies:
+          - types-boto3
           - types-docopt
           - types-setuptools
   - repo: https://github.com/pypa/pip-audit
