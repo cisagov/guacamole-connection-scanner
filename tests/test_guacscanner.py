@@ -1,4 +1,3 @@
-#!/usr/bin/env pytest -vs
 """Tests for guacscanner."""
 
 # Standard Python Libraries
