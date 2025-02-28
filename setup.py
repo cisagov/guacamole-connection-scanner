@@ -75,14 +75,14 @@ setup(
         # that you indicate whether you support Python 2, Python 3 or both.
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: Implementation :: CPython",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     # What does your project relate to?
     keywords="aws, guacamole, vpc",
     packages=find_packages(where="src"),
@@ -97,25 +97,30 @@ setup(
         "ec2-metadata == 2.13.0",
         "psycopg == 3.1.19",
         "schema == 0.7.7",
-        "setuptools >= 24.2.0",
+        "setuptools",
     ],
     extras_require={
+        # IMPORTANT: Keep type hinting-related dependencies of the dev section
+        # in sync with the mypy pre-commit hook configuration (see
+        # .pre-commit-config.yaml). Any changes to type hinting-related
+        # dependencies here should be reflected in the additional_dependencies
+        # field of the mypy pre-commit hook to avoid discrepancies in type
+        # checking between environments.
+        "dev": [
+            "types-boto3",
+            "types-docopt",
+            "types-setuptools",
+        ],
         "test": [
             "coverage",
-            # coveralls 1.11.0 added a service number for calls from
-            # GitHub Actions. This caused a regression which resulted in a 422
-            # response from the coveralls API with the message:
-            # Unprocessable Entity for url: https://coveralls.io/api/v1/jobs
-            # 1.11.1 fixed this issue, but to ensure expected behavior we'll pin
-            # to never grab the regression version.
-            "coveralls != 1.11.0",
+            "coveralls",
             # We are using the moto syntax that debuted in version
             # 5.0.0.
             "moto[ec2] >= 5.0.0",
             "pre-commit",
             "pytest-cov",
             "pytest",
-        ]
+        ],
     },
     # Conveniently allows one to run the CLI tool as
     # `guacscanner`
