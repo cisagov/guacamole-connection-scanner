@@ -769,7 +769,9 @@ def main() -> None:
         with open(validated_args["--windows-sftp-base-file"]) as file:
             windows_sftp_base = file.read()
 
-    db_connection_string = f"user={postgres_username} password={postgres_password} host={postgres_hostname} port={postgres_port} dbname={postgres_db_name}"
+    # We use a raw string here since the password, in particular, could contain
+    # a literal backslash.
+    db_connection_string = rf"user={postgres_username} password={postgres_password} host={postgres_hostname} port={postgres_port} dbname={postgres_db_name}"
 
     vpc_id = validated_args["--vpc-id"]
     # TODO: Verify that the region specified is indeed a valid AWS
